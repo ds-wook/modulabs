@@ -2,8 +2,9 @@ from typing import Tuple
 
 import numpy as np
 import pandas as pd
-from data.features import build_features
 from omegaconf import DictConfig
+
+from data.features import build_features
 
 
 def load_train_dataset(config: DictConfig) -> Tuple[pd.DataFrame, pd.Series]:
