@@ -28,7 +28,7 @@ def rmsle(y_true: np.ndarray, y_pred: np.ndarray, convert_exp: bool = True) -> f
 
 def rmsle_xgb(predictions: np.ndarray, dmat: DMatrix) -> Tuple[str, float]:
     labels = dmat.get_label()
-    diffs = np.log(predictions + 1) - np.log(labels + 1)
+    diffs = predictions - labels
     squared_diffs = np.square(diffs)
     avg = np.mean(squared_diffs)
     return "rmsle", np.sqrt(avg)
