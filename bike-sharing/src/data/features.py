@@ -1,4 +1,5 @@
 from typing import Tuple
+
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
@@ -48,9 +49,7 @@ def delete_outliers(train_y: pd.Series, train_x: pd.DataFrame) -> pd.DataFrame:
     return train_x
 
 
-def predict_wind_speed(
-    train_x: pd.DataFrame, test_x: pd.DataFrame
-) -> Tuple[pd.DataFrame, pd.DataFrame]:
+def predict_wind_speed(train_x: pd.DataFrame, test_x: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """Predict the wind speed using the wind direction.
     Args:
         df (pd.DataFrame): The dataframe to predict the wind speed.
@@ -68,7 +67,7 @@ def predict_wind_speed(
     wind_preds = rf.predict(X=df_without_wind[wind_columns])
     df.loc[df["windspeed"] == 0, "windspeed"] = wind_preds
 
-    train_x = df[:train_x.shape[0]]
+    train_x = df[: train_x.shape[0]]
     test_x = df[train_x.shape[0] :]
 
     return train_x, test_x

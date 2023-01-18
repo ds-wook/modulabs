@@ -11,9 +11,7 @@ warnings.filterwarnings("ignore")
 
 def _main(cfg: DictConfig):
     train_x, train_y = load_train_dataset(cfg)
-    x_train, x_valid, y_train, y_valid = train_test_split(
-        train_x, train_y, test_size=0.2, random_state=0
-    )
+    x_train, x_valid, y_train, y_valid = train_test_split(train_x, train_y, test_size=0.2, random_state=0)
 
     dtrain = xgb.DMatrix(x_train, y_train, enable_categorical=True)
     dvalid = xgb.DMatrix(x_valid, y_valid, enable_categorical=True)

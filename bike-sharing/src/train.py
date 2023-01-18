@@ -15,9 +15,7 @@ def _main(cfg: DictConfig):
     test_x = load_test_dataset(cfg)
     train_x, test_x = predict_wind_speed(train_x, test_x)
 
-    x_train, x_valid, y_train, y_valid = train_test_split(
-        train_x, train_y, test_size=0.2, random_state=0
-    )
+    x_train, x_valid, y_train, y_valid = train_test_split(train_x, train_y, test_size=0.2, random_state=0)
 
     dtrain = xgb.DMatrix(x_train, y_train, enable_categorical=True)
     dvalid = xgb.DMatrix(x_valid, y_valid, enable_categorical=True)
