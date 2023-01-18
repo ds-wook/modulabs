@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+bike-sharing/input/*
+bike-sharing/res/*
+bike-sharing/output/*
+.vscode/*
