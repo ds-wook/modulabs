@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import warnings
-from typing import NoReturn, Optional, Tuple
+from typing import Optional, Tuple
 
 import lightgbm as lgb
 import numpy as np
@@ -52,8 +52,8 @@ class LightGBMTrainer(BaseModel):
 
 
 class CatBoostTrainer(BaseModel):
-    def __init__(self, **kwargs) -> NoReturn:
-        super().__init__(**kwargs)
+    def __init__(self, config: DictConfig):
+        super().__init__(config)
 
     def _fit(
         self,
@@ -84,8 +84,8 @@ class CatBoostTrainer(BaseModel):
 
 
 class XGBoostTrainer(BaseModel):
-    def __init__(self, **kwargs) -> NoReturn:
-        super().__init__(**kwargs)
+    def __init__(self, config: DictConfig):
+        super().__init__(config)
 
     def _evaluate_metric(self, y_hat: np.ndarray, data: xgb.DMatrix) -> Tuple[str, float]:
         y_true = data.get_label()
