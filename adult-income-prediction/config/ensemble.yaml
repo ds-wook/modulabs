@@ -1,0 +1,15 @@
+defaults:
+  - _self_
+  - data: dataset
+  - hydra: default
+  - models: lightgbm
+output:
+  name: output/
+  lgbm_preds: 5fold-lightgbm-ensemble.csv
+  cb_preds: 5fold-catboost-ensemble.csv
+  xgb_preds: 5fold-xgboost-ensemble.csv
+  final_preds: 5fold-gradient-ensemble.csv
+ensemble:
+  lightgbm: 5fold-lightgbm-results.pkl
+  catboost: 5fold-catboost-results.pkl
+  xgboost: 5fold-xgboost-results.pkl

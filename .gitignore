@@ -131,3 +131,6 @@ bike-sharing/input/*
 bike-sharing/res/*
 bike-sharing/output/*
 .vscode/*
+adult-income-prediction/input/*
+adult-income-prediction/res/*
+adult-income-prediction/output/*
