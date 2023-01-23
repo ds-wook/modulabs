@@ -6,7 +6,7 @@ import warnings
 from abc import ABCMeta, abstractclassmethod
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, NoReturn, Optional
+from typing import Any, Dict, NoReturn
 
 import lightgbm as lgb
 import numpy as np
@@ -36,11 +36,7 @@ class BaseModel(metaclass=ABCMeta):
 
     @abstractclassmethod
     def _fit(
-        self,
-        X_train: pd.DataFrame,
-        y_train: pd.Series,
-        X_valid: Optional[pd.DataFrame] = None,
-        y_valid: Optional[pd.Series] = None,
+        self, X_train: pd.DataFrame, y_train: pd.Series, X_valid: pd.DataFrame | None, y_valid: pd.Series | None
     ) -> NoReturn:
         """Trains the model"""
         raise NotImplementedError
@@ -53,11 +49,7 @@ class BaseModel(metaclass=ABCMeta):
             pickle.dump(self.result, output, pickle.HIGHEST_PROTOCOL)
 
     def train(
-        self,
-        X_train: pd.DataFrame,
-        y_train: pd.Series,
-        X_valid: Optional[pd.DataFrame] = None,
-        y_valid: Optional[pd.Series] = None,
+        self, X_train: pd.DataFrame, y_train: pd.Series, X_valid: pd.DataFrame | None, y_valid: pd.Series | None
     ) -> BaseModel:
         """
         Trains the model.

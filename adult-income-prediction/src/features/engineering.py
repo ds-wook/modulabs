@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import pickle
 from pathlib import Path
-from typing import List
 
 import numpy as np
 import pandas as pd
@@ -35,7 +34,7 @@ def add_features(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def encode_frequency(df: pd.DataFrame, columns: List[str]) -> pd.DataFrame:
+def encode_frequency(df: pd.DataFrame, columns: list[str]) -> pd.DataFrame:
     """
     Frequency encoding for categorical features.
     Args:

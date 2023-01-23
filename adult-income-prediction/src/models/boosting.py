@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import warnings
-from typing import Optional, Tuple
 
 import lightgbm as lgb
 import numpy as np
@@ -20,17 +19,13 @@ class LightGBMTrainer(BaseModel):
     def __init__(self, config: DictConfig):
         super().__init__(config)
 
-    def _evaluate_metric(self, y_hat: np.ndarray, data: lgb.Dataset) -> Tuple[str, float, bool]:
+    def _evaluate_metric(self, y_hat: np.ndarray, data: lgb.Dataset) -> tuple[str, float, bool]:
         y_true = data.get_label()
         y_hat = np.round(y_hat)
         return "f1", f1_score(y_true, y_hat, average="micro"), True
 
     def _fit(
-        self,
-        X_train: pd.DataFrame,
-        y_train: pd.Series,
-        X_valid: Optional[pd.DataFrame] = None,
-        y_valid: Optional[pd.Series] = None,
+        self, X_train: pd.DataFrame, y_train: pd.Series, X_valid: pd.DataFrame | None, y_valid: pd.Series | None
     ) -> lgb.Booster:
         """
         load train model
@@ -56,11 +51,7 @@ class CatBoostTrainer(BaseModel):
         super().__init__(config)
 
     def _fit(
-        self,
-        X_train: pd.DataFrame,
-        y_train: pd.Series,
-        X_valid: Optional[pd.DataFrame] = None,
-        y_valid: Optional[pd.Series] = None,
+        self, X_train: pd.DataFrame, y_train: pd.Series, X_valid: pd.DataFrame | None, y_valid: pd.Series | None
     ) -> CatBoostClassifier:
         """
         load train model
@@ -87,17 +78,13 @@ class XGBoostTrainer(BaseModel):
     def __init__(self, config: DictConfig):
         super().__init__(config)
 
-    def _evaluate_metric(self, y_hat: np.ndarray, data: xgb.DMatrix) -> Tuple[str, float]:
+    def _evaluate_metric(self, y_hat: np.ndarray, data: xgb.DMatrix) -> tuple[str, float]:
         y_true = data.get_label()
         y_hat = np.round(y_hat)
         return "f1", 1 - f1_score(y_true, y_hat, average="micro")
 
     def _fit(
-        self,
-        X_train: pd.DataFrame,
-        y_train: pd.Series,
-        X_valid: Optional[pd.DataFrame] = None,
-        y_valid: Optional[pd.Series] = None,
+        self, X_train: pd.DataFrame, y_train: pd.Series, X_valid: pd.DataFrame | None, y_valid: pd.Series | None
     ) -> xgb.Booster:
         """
         load train model

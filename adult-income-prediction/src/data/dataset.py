@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Tuple
 
 import pandas as pd
 from hydra.utils import get_original_cwd
@@ -18,7 +17,7 @@ class Dataset:
         self._test = pd.read_csv(self.path / self.config.data.test, na_values="?")
         self._submit = pd.read_csv(self.path / self.config.data.submit)
 
-    def load_train_dataset(self) -> Tuple[pd.DataFrame, pd.Series]:
+    def load_train_dataset(self) -> tuple[pd.DataFrame, pd.Series]:
         self._train = add_features(self._train)
         self._train = categorize_train_features(self.config, self._train)
         self._train = encode_frequency(self._train, self.config.data.freq_features)

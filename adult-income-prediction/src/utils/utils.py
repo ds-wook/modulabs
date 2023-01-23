@@ -1,8 +1,9 @@
+from __future__ import annotations
+
 import itertools
 import logging
 import os
 import random
-from typing import Dict
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -12,7 +13,7 @@ from sklearn.metrics import f1_score
 from tqdm import tqdm
 
 
-def evaluate_metrics(y_true: np.ndarray, y_pred: np.ndarray, scores: Dict[str, float]) -> None:
+def evaluate_metrics(y_true: np.ndarray, y_pred: np.ndarray, scores: dict[str, float]) -> None:
     """
     Evaluate metrics
     """
