@@ -6,7 +6,7 @@ import warnings
 from abc import ABCMeta, abstractclassmethod
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, NoReturn
+from typing import Any, NoReturn
 
 import lightgbm as lgb
 import numpy as np
@@ -25,8 +25,8 @@ warnings.filterwarnings("ignore")
 @dataclass
 class ModelResult:
     oof_preds: np.ndarray
-    models: Dict[str, Any]
-    scores: Dict[str, Dict[str, float]]
+    models: dict[str, Any]
+    scores: dict[str, dict[str, float]]
 
 
 class BaseModel(metaclass=ABCMeta):
