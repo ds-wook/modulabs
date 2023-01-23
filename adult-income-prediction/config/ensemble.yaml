@@ -3,6 +3,8 @@ defaults:
   - data: dataset
   - hydra: default
   - models: lightgbm
+  - override hydra/hydra_logging: disabled
+  - override hydra/job_logging: disabled
 output:
   name: output/
   lgbm_preds: 5fold-lightgbm-ensemble.csv
