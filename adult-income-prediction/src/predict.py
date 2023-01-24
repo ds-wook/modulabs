@@ -24,8 +24,9 @@ def _main(cfg: DictConfig):
 
     # infer test
     preds = inference(results, test_x)
+    preds = preds if cfg.output.predict_proba else np.where(preds > 0.5, 1, 0)
 
-    submit["prediction"] = preds if cfg.output.predict_proba else np.where(preds > 0.5, 1, 0)
+    submit[cfg.output.target] = preds
     submit.to_csv(path / cfg.models.output, index=False)
 
 

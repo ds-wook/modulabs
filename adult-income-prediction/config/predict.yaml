@@ -8,3 +8,4 @@ defaults:
 output:
   path: output
   predict_proba: True
+  target: prediction

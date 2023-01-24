@@ -12,7 +12,6 @@ import lightgbm as lgb
 import numpy as np
 import pandas as pd
 import xgboost as xgb
-from hydra.utils import get_original_cwd
 from omegaconf import DictConfig
 from sklearn.metrics import f1_score
 from sklearn.model_selection import StratifiedKFold
@@ -41,12 +40,13 @@ class BaseModel(metaclass=ABCMeta):
         """Trains the model"""
         raise NotImplementedError
 
-    def save_model(self) -> NoReturn:
+    def save_model(self, model_path: Path | str, model_name: str) -> BaseModel:
         """Save model"""
-        model_path = Path(get_original_cwd()) / self.config.models.path / self.config.models.results
 
-        with open(model_path, "wb") as output:
+        with open(model_path / model_name, "wb") as output:
             pickle.dump(self.result, output, pickle.HIGHEST_PROTOCOL)
+
+        return self
 
     def train(
         self, X_train: pd.DataFrame, y_train: pd.Series, X_valid: pd.DataFrame | None, y_valid: pd.Series | None

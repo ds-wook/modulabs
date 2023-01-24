@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 import hydra
 from omegaconf import DictConfig
 
@@ -18,21 +20,21 @@ def _main(cfg: DictConfig):
         xgb_trainer = XGBoostTrainer(config=cfg)
         xgb_trainer.train_cross_validation(train_x, train_y)
         # save model
-        xgb_trainer.save_model()
+        xgb_trainer.save_model(Path(cfg.models.path), cfg.models.results)
 
     elif cfg.models.name == "lightgbm":
         # train model
         lgb_trainer = LightGBMTrainer(config=cfg)
         lgb_trainer.train_cross_validation(train_x, train_y)
         # save model
-        lgb_trainer.save_model()
+        lgb_trainer.save_model(Path(cfg.models.path), cfg.models.results)
 
     elif cfg.models.name == "catboost":
         # train model
-        cat_trainer = CatBoostTrainer(config=cfg)
-        cat_trainer.train_cross_validation(train_x, train_y)
+        cb_trainer = CatBoostTrainer(config=cfg)
+        cb_trainer.train_cross_validation(train_x, train_y)
         # save model
-        cat_trainer.save_model()
+        cb_trainer.save_model(Path(cfg.models.path), cfg.models.results)
 
     else:
         raise NotImplementedError

@@ -5,7 +5,6 @@ import lightgbm as lgb
 import numpy as np
 import pandas as pd
 import xgboost as xgb
-from hydra.utils import get_original_cwd
 from omegaconf import DictConfig
 from tqdm import tqdm
 
@@ -20,7 +19,7 @@ def load_model(config: DictConfig, model_name: str) -> ModelResult:
     Returns:
         ModelResult object
     """
-    model_path = Path(get_original_cwd()) / config.models.path / model_name
+    model_path = Path(config.models.path) / model_name
 
     with open(model_path, "rb") as output:
         model_result = pickle.load(output)
