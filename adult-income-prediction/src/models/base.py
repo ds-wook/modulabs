@@ -41,7 +41,14 @@ class BaseModel(metaclass=ABCMeta):
         raise NotImplementedError
 
     def save_model(self, model_path: Path | str, model_name: str) -> BaseModel:
-        """Save model"""
+        """
+        Save model
+        Args:
+            model_path: model path
+            model_name: model name
+        Return:
+            Model Result
+        """
 
         with open(model_path / model_name, "wb") as output:
             pickle.dump(self.result, output, pickle.HIGHEST_PROTOCOL)
