@@ -1,0 +1,21 @@
+n_splits: 5
+params:
+  objective: binary
+  boosting_type: gbdt
+  learning_rate: 0.01
+  num_leaves: 63
+  max_depth: -1
+  max_bin: 255
+  min_data_in_leaf: 40
+  feature_fraction: 0.8
+  bagging_fraction: 0.8
+  bagging_freq: 1
+  seed: 42
+  verbose: -1
+path: res/models/
+name: lightgbm
+results: 5fold-lightgbm-results-log-features.pkl
+early_stopping_rounds: 100
+num_boost_round: 10000
+verbose_eval: 100
+output: 5fold-lightgbm-ensemble-log-features.csv

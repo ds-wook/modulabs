@@ -1,0 +1,15 @@
+n_splits: 5
+params:
+  eta: 0.02
+  max_depth: 6
+  subsample: 0.8
+  seed: 42
+  tree_method: gpu_hist
+  objective: binary:logistic
+path: res/models/
+name: xgboost
+results: 5fold-xgboost-results-log-features.pkl
+early_stopping_rounds: 100
+num_boost_round: 10000
+verbose_eval: 100
+output: 5fold-xgboost-ensemble-log-features.csv
