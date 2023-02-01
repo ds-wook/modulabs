@@ -30,6 +30,7 @@ class AdultDataset:
         self._test = categorize_test_features(self.config, self._test)
         self._test = encode_frequency(self._test, self.config.data.freq_features)
         test_x = self._test.drop(columns=[*self.config.data.drop_features])
+
         return test_x
 
     def load_submit_dataset(self) -> pd.DataFrame:

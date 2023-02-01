@@ -5,14 +5,14 @@ from pathlib import Path
 import hydra
 from omegaconf import DictConfig
 
-from data.adult import Dataset
+from data.adult import AdultDataset
 from models.boosting import CatBoostTrainer, LightGBMTrainer, XGBoostTrainer
 
 
 @hydra.main(config_path="../config/", config_name="train", version_base="1.2.0")
 def _main(cfg: DictConfig):
     # data load
-    data_loader = Dataset(config=cfg)
+    data_loader = AdultDataset(config=cfg)
     train_x, train_y = data_loader.load_train_dataset()
 
     if cfg.models.name == "xgboost":
