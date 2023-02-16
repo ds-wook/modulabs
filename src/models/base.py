@@ -53,7 +53,7 @@ class BaseModel(metaclass=ABCMeta):
 
         return self
 
-    def train(self, X_train: pd.DataFrame, y_train: pd.Series, X_valid: pd.DataFrame, y_valid: pd.Series) -> BaseModel:
+    def fit(self, X_train: pd.DataFrame, y_train: pd.Series, X_valid: pd.DataFrame, y_valid: pd.Series) -> BaseModel:
         """
         Trains the model.
         Args:
