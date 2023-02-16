@@ -33,11 +33,6 @@ class BaseModel(metaclass=ABCMeta):
         self.config = config
         self.result = None
 
-    @abstractclassmethod
-    def _fit(self, X_train: pd.DataFrame, y_train: pd.Series, X_valid: pd.DataFrame, y_valid: pd.Series) -> NoReturn:
-        """Trains the model"""
-        raise NotImplementedError
-
     def save_model(self, model_path: Path | str, model_name: str) -> BaseModel:
         """
         Save model
@@ -52,6 +47,11 @@ class BaseModel(metaclass=ABCMeta):
             pickle.dump(self.result, output, pickle.HIGHEST_PROTOCOL)
 
         return self
+
+    @abstractclassmethod
+    def _fit(self, X_train: pd.DataFrame, y_train: pd.Series, X_valid: pd.DataFrame, y_valid: pd.Series) -> NoReturn:
+        """Trains the model"""
+        raise NotImplementedError
 
     def fit(self, X_train: pd.DataFrame, y_train: pd.Series, X_valid: pd.DataFrame, y_valid: pd.Series) -> BaseModel:
         """
@@ -68,7 +68,7 @@ class BaseModel(metaclass=ABCMeta):
 
         return model
 
-    def train_cross_validation(self, train_x: pd.DataFrame, train_y: pd.Series) -> ModelResult:
+    def cross_validation(self, train_x: pd.DataFrame, train_y: pd.Series) -> ModelResult:
         """
         Train data
         Args:

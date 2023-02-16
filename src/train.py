@@ -18,21 +18,21 @@ def _main(cfg: DictConfig):
     if cfg.models.name == "xgboost":
         # train model
         xgb_trainer = XGBoostTrainer(config=cfg)
-        xgb_trainer.train_cross_validation(train_x, train_y)
+        xgb_trainer.cross_validation(train_x, train_y)
         # save model
         xgb_trainer.save_model(Path(cfg.models.path), cfg.models.results)
 
     elif cfg.models.name == "lightgbm":
         # train model
         lgb_trainer = LightGBMTrainer(config=cfg)
-        lgb_trainer.train_cross_validation(train_x, train_y)
+        lgb_trainer.cross_validation(train_x, train_y)
         # save model
         lgb_trainer.save_model(Path(cfg.models.path), cfg.models.results)
 
     elif cfg.models.name == "catboost":
         # train model
         cb_trainer = CatBoostTrainer(config=cfg)
-        cb_trainer.train_cross_validation(train_x, train_y)
+        cb_trainer.cross_validation(train_x, train_y)
         # save model
         cb_trainer.save_model(Path(cfg.models.path), cfg.models.results)
 
